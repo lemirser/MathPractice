@@ -9,50 +9,54 @@
 
 import random
 
-print(random.randint(0, 10))
+difficulty = input("Choose your difficulty level [Basic, Easy, Medium, Hard]: ")
+operation = input("Choose the operation [+, -, *, /, Random]: ")
 
 
-def user_input():
-    difficulty = input("Choose your difficulty level [Basic, Easy, Medium, Hard]: ")
-    operation = input("Choose the operation [+, -, *, /, Random]: ")
-    return (difficulty.lower(), operation.lower())
+while True:
 
+    a, b = 0, 0
 
-def diff_level():
-    level, op = user_input()
-    result, a, b = 0, 0, 0
-    rand_op = ["+", "*", "-", "/"]
-
-    if level == "basic":
+    if difficulty == "basic":
         a = random.randint(0, 20)
         b = random.randint(0, 20)
-    elif level == "easy":
+    elif difficulty == "easy":
         a = random.randint(0, 40)
         b = random.randint(0, 40)
-    elif level == "medium":
+    elif difficulty == "medium":
         a = random.randint(0, 60)
         b = random.randint(0, 60)
-    elif level == "hard":
+    elif difficulty == "hard":
         a = random.randint(1, 100)
         b = random.randint(1, 100)
 
-    if op == "random":
-        op = rand_op[random.randint(0, 3)]
+    rand_op = ["+", "*", "-", "/"]
+    result = 0
 
-    if op == "+":
+    if operation == "random":
+        operation = rand_op[random.randint(0, 3)]
+
+    if operation == "+":
         print(f"{a} + {b}")
         result = a + b
-    elif op == "-":
+    elif operation == "-":
         print(f"{a} - {b}")
         result = a - b
-    elif op == "*":
+    elif operation == "*":
         print(f"{a} * {b}")
         result = a * b
-    elif op == "/":
+    elif operation == "/":
         print(f"{a} / {b}")
         result = a / b
 
-    return result
+    _answer = input("Input your answer: ")
 
+    if _answer == "exit":
+        break
 
-print(diff_level())
+    if int(_answer) == int(result):
+        print("Correct")
+        print("\n" * 3)
+    else:
+        print("Incorrect, please try again!")
+        print("\n" * 3)
